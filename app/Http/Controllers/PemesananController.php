@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Pelajaran;
 use App\Models\Pemesanan;
 
-class PelajaranController extends Controller
+class PemesananController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -37,7 +36,6 @@ class PelajaranController extends Controller
             'harga' => 'required',
             'tanggal' => 'required',
             'jumlah' => 'required',
-
         ]);
 
         $pem = new Pemesanan;
@@ -49,7 +47,7 @@ class PelajaranController extends Controller
         
         $pem->save();
 
-        return redirect('/pemesanan/')->with('success', 'Data pemesanan berhasil disimpan');
+        return redirect('/pemesanan')->with('success', 'Data pemesanan berhasil disimpan');
     }
 
     /**
@@ -67,9 +65,9 @@ class PelajaranController extends Controller
     {
         $pem = Pemesanan::find($id);
         if ($pem) {
-            return view('Pemesanan.edit', compact('pemesanan'));
+            return view('pemesanan.edit', compact('pem'));
         } else {
-            return redirect('/Pemesanan/')->withErrors('Data tidak ditemukan');
+            return redirect('/pemesanan')->withErrors('Data tidak ditemukan');
         }
     }
 
@@ -84,7 +82,6 @@ class PelajaranController extends Controller
             'harga' => 'required',
             'tanggal' => 'required',
             'jumlah' => 'required',
-
         ]);
 
         $pem = Pemesanan::find($id);
@@ -95,9 +92,9 @@ class PelajaranController extends Controller
             $pem->tanggal = $request->tanggal;
             $pem->jumlah = $request->jumlah;
             $pem->save();
-            return redirect('/Pemesanan/')->with('success', 'Data Pemesanan berhasil diupdate');
+            return redirect('/pemesanan')->with('success', 'Data pemesanan berhasil diupdate');
         } else {
-            return redirect('/Pemesanan/')->withErrors('Data tidak ditemukan');
+            return redirect('/pemesanan')->withErrors('Data tidak ditemukan');
         }
     }
 
@@ -109,9 +106,9 @@ class PelajaranController extends Controller
         $pem = Pemesanan::find($id);
         if ($pem) {
             $pem->delete();
-            return redirect('/Pemesanan/')->with('success', 'Data Pemesanan berhasil dihapus');
+            return redirect('/pemesanan')->with('success', 'Data pemesanan berhasil dihapus');
         } else {
-            return redirect('/Pemesanan/')->withErrors('Data tidak ditemukan');
+            return redirect('/pemesanan')->withErrors('Data tidak ditemukan');
         }
     }
 }

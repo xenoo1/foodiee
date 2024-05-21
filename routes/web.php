@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PemesananController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,5 +21,11 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/pemesanan/', [App\Http\Controllers\PemesananController::class, 'index'])->middleware('auth');
+
+Route::get('/pemesanan/', [PemesananController::class, 'index'])->middleware('auth');
+Route::get('/pemesanan/form/', [PemesananController::class, 'create'])->middleware('auth');
+Route::post('/pemesanan/store/', [PemesananController::class, 'store'])->middleware('auth');
+Route::get('/pemesanan/edit/{id}', [PemesananController::class, 'edit'])->middleware('auth');
+Route::put('/pemesanan/{id}', [PemesananController::class, 'update'])->middleware('auth');
+Route::delete('/pemesanan/{id}', [PemesananController::class, 'destroy'])->middleware('auth');
 
