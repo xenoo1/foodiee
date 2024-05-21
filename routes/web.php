@@ -20,3 +20,5 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/pemesanan/', [App\Http\Controllers\PemesananController::class, 'index'])->middleware('auth');
+

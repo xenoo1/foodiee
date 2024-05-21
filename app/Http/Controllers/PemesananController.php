@@ -3,15 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Pelajaran;
+use App\Models\Pemesanan;
 
-class PemesananController extends Controller
+class PelajaranController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $nomor = 1;
+        $pem = Pemesanan::all();
+        return view('pemesanan.index', compact('nomor', 'pem'));
     }
 
     /**
@@ -19,7 +23,7 @@ class PemesananController extends Controller
      */
     public function create()
     {
-        //
+        return view('pemesanan.form');
     }
 
     /**
@@ -27,7 +31,25 @@ class PemesananController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama' => 'required',
+            'makanan' => 'required',
+            'harga' => 'required',
+            'tanggal' => 'required',
+            'jumlah' => 'required',
+
+        ]);
+
+        $pem = new Pemesanan;
+        $pem->nama = $request->nama;
+        $pem->makanan = $request->makanan;
+        $pem->harga = $request->harga;
+        $pem->tanggal = $request->tanggal;
+        $pem->jumlah = $request->jumlah;
+        
+        $pem->save();
+
+        return redirect('/pemesanan/')->with('success', 'Data pemesanan berhasil disimpan');
     }
 
     /**
@@ -43,7 +65,12 @@ class PemesananController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $pem = Pemesanan::find($id);
+        if ($pem) {
+            return view('Pemesanan.edit', compact('pemesanan'));
+        } else {
+            return redirect('/Pemesanan/')->withErrors('Data tidak ditemukan');
+        }
     }
 
     /**
@@ -51,7 +78,27 @@ class PemesananController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'nama' => 'required',
+            'makanan' => 'required',
+            'harga' => 'required',
+            'tanggal' => 'required',
+            'jumlah' => 'required',
+
+        ]);
+
+        $pem = Pemesanan::find($id);
+        if ($pem) {
+            $pem->nama = $request->nama;
+            $pem->makanan = $request->makanan;
+            $pem->harga = $request->harga;
+            $pem->tanggal = $request->tanggal;
+            $pem->jumlah = $request->jumlah;
+            $pem->save();
+            return redirect('/Pemesanan/')->with('success', 'Data Pemesanan berhasil diupdate');
+        } else {
+            return redirect('/Pemesanan/')->withErrors('Data tidak ditemukan');
+        }
     }
 
     /**
@@ -59,6 +106,12 @@ class PemesananController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $pem = Pemesanan::find($id);
+        if ($pem) {
+            $pem->delete();
+            return redirect('/Pemesanan/')->with('success', 'Data Pemesanan berhasil dihapus');
+        } else {
+            return redirect('/Pemesanan/')->withErrors('Data tidak ditemukan');
+        }
     }
 }
