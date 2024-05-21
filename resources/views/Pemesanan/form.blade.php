@@ -19,7 +19,7 @@
                 </div>
                 <div class="form-group">
                     <label for="harga">harga</label>
-                    <input type="number" class="form-control" id="makanan" name="makanan">
+                    <input type="number" class="form-control" id="harga" name="harga">
 
                 </div>
                 <div class="form-group">
