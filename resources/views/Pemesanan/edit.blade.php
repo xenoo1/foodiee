@@ -14,23 +14,23 @@
                 @csrf
                 <div class="mb-3">
                     <label class="form-label">Nama</label>
-                    <input type="text" readonly value="{{$pem->nama}}" class="form-control" name="nama">
+                    <input type="text"  value="{{$pem->nama}}" class="form-control" name="nama">
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Makanan</label>
-                    <input type="text" readonly value="{{$pem->makanan}}" class="form-control" name="makanan">
+                    <input type="text"  value="{{$pem->makanan}}" class="form-control" name="makanan">
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Harga</label>
-                    <input type="number" readonly value="{{$pem->harga}}" class="form-control" name="harga">
+                    <input type="number"  value="{{$pem->harga}}" class="form-control" name="harga">
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Tanggal Pemesanan</label>
-                    <input type="date" readonly value="{{$pem->tanggal}}" class="form-control" name="tanggal">
+                    <input type="date"  value="{{$pem->tanggal}}" class="form-control" name="tanggal">
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Jumlah</label>
-                    <input type="number" readonly value="{{$pem->jumlah}}" class="form-control" name="jumlah">
+                    <input type="number"  value="{{$pem->jumlah}}" class="form-control" name="jumlah">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
